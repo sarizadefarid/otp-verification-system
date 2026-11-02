@@ -1,4 +1,4 @@
-# otp-verification-system 
+
 # OTP Verification System
 
 A full-stack OTP (One-Time Password) verification application built with Java Spring Boot.
