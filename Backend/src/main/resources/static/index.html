@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OTP System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="card">
+      <!-- Addım 1: telefon və ya e-poçt -->
+      <section class="step" id="step-contact">
+        <h1>Login</h1>
+        <p class="sub">Choose how you want to receive the verification code.</p>
+
+        <div class="tabs" role="tablist" aria-label="Təsdiq üsulu">
+          <button
+            class="tab active"
+            role="tab"
+            aria-selected="true"
+            data-method="phone"
+          >
+            Phone
+          </button>
+          <button
+            class="tab"
+            role="tab"
+            aria-selected="false"
+            data-method="email"
+          >
+            Email
+          </button>
+        </div>
+
+        <label for="contact" id="contact-label">Phone Number</label>
+        <input
+          class="field"
+          id="contact"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          placeholder="+994 50 123 45 67"
+        />
+        <p class="msg err" id="contact-msg" role="alert"></p>
+        <button class="btn" id="send">Send Code </button>
+      </section>
+
+      <!-- Addım 2: kod -->
+      <section class="step" id="step-code" hidden>
+        <h1>Please enter the code</h1>
+        <p class="sub">
+          A 6-digit code has been sent to <b id="sent-to"></b>.
+        </p>
+        <div class="otp" id="otp" role="group" aria-label="OTP Code"></div>
+        <p class="msg" id="code-msg" role="alert"></p>
+        <button class="btn" id="verify" disabled>Confirm</button>
+        <div class="row">
+          <span id="timer"></span>
+          <button class="link" id="resend" disabled>Resend Code</button>
+        </div>
+        <div class="row">
+          <button class="link" id="back">Change Information</button>
+        </div>
+      </section>
+
+      <!-- Addım 3: uğur -->
+      <section class="step done" id="step-done" hidden>
+        <div class="tick">
+          <svg viewBox="0 0 36 36"><path d="M8 19l7 7 13-14" /></svg>
+        </div>
+        <h1>Confirmed</h1>
+        <p class="sub" style="margin: 0">Your account has been successfully confirmed.</p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,405 @@
+:root {
+    --bg: #e9eef5;
+    --card: #ffffff;
+    --ink: #14213d;
+    --muted: #5b6b86;
+    --line: #c9d3e3;
+    --accent: #2f5bff;
+    --ok: #12805c;
+    --err: #c23b3b;
+    --font: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme:dark) {
+    :root {
+        --bg: #0f1626;
+        --card: #18223a;
+        --ink: #eef2fb;
+        --muted: #9aa9c6;
+        --line: #2d3a58;
+        --accent: #6f8cff;
+        --ok: #3ccf99;
+        --err: #ff7a7a;
+    }
+}
+
+* {
+    box-sizing: border-box
+}
+
+html, body {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    display: grid;
+    place-items: center;
+    padding: 20px
+}
+
+.card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card);
+    border-radius: 20px;
+    padding: 36px 28px 28px;
+    box-shadow: 0 20px 50px -20px rgba(20, 33, 61, .35)
+}
+
+h1 {
+    font-size: 28px;
+    line-height: 1.15;
+    margin: 0 0 8px;
+    font-weight: 800;
+    letter-spacing: -.02em
+}
+
+p.sub {
+    margin: 0 0 24px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-size: 15px
+}
+
+p.sub b {
+    color: var(--ink);
+    font-weight: 600;
+    word-break: break-all
+}
+
+.step[hidden] {
+    display: none
+}
+
+/* Telefon / E-poçt seçimi */
+.tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 20px;
+    background: var(--bg);
+    border-radius: 12px
+}
+
+.tab {
+    font: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background .15s, color .15s
+}
+
+.tab.active {
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: 0 2px 6px rgba(20, 33, 61, .15)
+}
+
+.tab:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 1px
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px
+}
+
+input.field {
+    width: 100%;
+    font: inherit;
+    font-size: 17px;
+    padding: 14px 16px;
+    color: var(--ink);
+    background: transparent;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    outline: none
+}
+
+input.field:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent)
+}
+
+.btn {
+    width: 100%;
+    margin-top: 20px;
+    font: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 15px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity .15s, transform .1s
+}
+
+.btn:hover {
+    opacity: .92
+}
+
+.btn:active {
+    transform: scale(.99)
+}
+
+.btn:disabled {
+    opacity: .45;
+    cursor: not-allowed
+}
+
+.btn:focus-visible, .link:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px
+}
+
+/* Kod xanaları */
+.otp {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between
+}
+
+.otp input {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 1/1.2;
+    text-align: center;
+    font: inherit;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--ink);
+    background: transparent;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    outline: none;
+    caret-color: var(--accent);
+    transition: border-color .15s, background .15s, transform .15s
+}
+
+.otp input:focus {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 -4px var(--accent)
+}
+
+.otp input.filled {
+    border-color: var(--ink)
+}
+
+.otp.error input {
+    border-color: var(--err);
+    animation: shake .35s
+}
+
+.otp.success input {
+    border-color: var(--ok);
+    background: color-mix(in srgb, var(--ok) 12%, transparent)
+}
+
+@keyframes shake {
+    25% {
+        transform: translateX(-5px)
+    }
+
+    50% {
+        transform: translateX(5px)
+    }
+
+    75% {
+        transform: translateX(-3px)
+    }
+}
+
+.msg {
+    min-height: 22px;
+    margin: 14px 0 0;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.msg.err {
+    color: var(--err)
+}
+
+.msg.ok {
+    color: var(--ok)
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--muted)
+}
+
+.link {
+    background: none;
+    border: 0;
+    font: inherit;
+    font-weight: 600;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 4px 0
+}
+
+.link:disabled {
+    color: var(--muted);
+    cursor: default
+}
+
+.done {
+    text-align: center;
+    padding: 12px 0
+}
+
+.tick {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: var(--ok);
+    display: grid;
+    place-items: center
+}
+
+.tick svg {
+    width: 36px;
+    height: 36px;
+    stroke: #fff;
+    stroke-width: 3.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: draw .5s .15s forwards
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    * {
+        animation: none !important;
+        transition: none !important
+    }
+
+    .tick svg {
+        stroke-dashoffset: 0
+    }
+}
+
+@media (max-width:380px) {
+    .otp {
+        gap: 6px
+    }
+
+    .otp input {
+        font-size: 22px
+    }
+}
+
+/* ===== Düymə animasiyaları ===== */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* 1. Üzərinə gələndə yuxarı qalxır və kölgə alır */
+.btn:hover:not(:disabled) {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px -10px var(--accent);
+}
+
+/* 2. Basanda sıxılır */
+.btn:active:not(:disabled) {
+    transform: translateY(0) scale(.97);
+    box-shadow: none;
+}
+
+/* 3. Parıltı: işıq zolağı düymənin üstündən keçir */
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .35), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+
+.btn:hover:not(:disabled)::after {
+    left: 130%;
+    transition: left .6s ease;
+}
+
+/* 4. Yüklənmə: yazı gizlənir, yerinə fırlanan dairə çıxır */
+.btn.loading {
+    color: transparent;
+    pointer-events: none;
+}
+
+.btn.loading:disabled {
+    opacity: 1
+}
+
+.btn.loading::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, .4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+/* Kiçik düymələr (link) üçün: alt xətt soldan sağa açılır */
+.link {
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 2px;
+    transition: background-size .25s ease;
+}
+
+.link:hover:not(:disabled) {
+    background-size: 100% 2px
+}
+
+/* Animasiyanı azaltmaq istəyənlər üçün */
+@media (prefers-reduced-motion:reduce) {
+    .btn::after, .btn.loading::before {
+        animation: none;
+        transition: none
+    }
+}
